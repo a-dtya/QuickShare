@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Card Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      margin: 0;
+      padding: 0%;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+    }
+    .navbar-logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar-button {
+      background-color: #008CBA;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .navbar-button-icon {
+      display: none;
+      font-size: 20px;
+      margin-left: 5px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container-link{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      height: fit-content;
+      gap: 0.5rem;
+    }
+    .form-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+    }
+    .form-card label,
+    .form-card input,
+    .form-card button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .form-card button {
+      background-color: #008CBA;
+      border: none;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .form-card button:hover {
+      background-color: #005f6b;
+    }
+    @media only screen and (max-width: 600px) {
+      .form-card {
+        max-width: 300px;
+      }
+      .navbar-button {
+        padding: 10px;
+      }
+      .navbar-button-text {
+        display: none;
+      }
+      .navbar-button-icon {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-logo">
+      QuickShare
+    </div>
+    <div class="navbar-button" style="gap:0.3em">
+      <span class="navbar-button-text">Get Started</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="container-link" >
+      <% if(locals.fileLink != null){ %>
+            <h3 style="color:white;">Your File is Uploaded</h3>
+            <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
+      <% } %>  
+      
+    </div>
+    <form class="form-card" action="/upload" method="post" enctype="multipart/form-data">
+      <label for="file">File:</label>
+      <input type="file" id="file" name="file">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
